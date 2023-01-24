@@ -19,7 +19,7 @@ pipeline {
               }
             }
         }
-        stage('Hello') {
+        stage('Deploy') {
             steps {
                 echo "Deploy"
                 sh "docker run -d --name flask-app-$BUILD_ID -p 80$BUILD_ID:8080 huseyn111/simple_python:v$BUILD_ID"
