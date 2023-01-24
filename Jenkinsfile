@@ -11,8 +11,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo "__Build__"
-                sh "cd /var/lib/jenkins/workspace/Gotovka_pipe/simple_python_app/ && docker build -t huseyn111/simple_python:v$BUILD_ID ."
+                echo "__Build and push dockerhub__"
+                sh "docker build -t huseyn111/simple_python:v$BUILD_ID ."
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 sh "docker login -u $user -p $pass"
                 sh "docker push huseyn111/simple_python:v$BUILD_ID"
